@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -7,7 +7,8 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 COPY . /app
+#COPY .. /app
 
-RUN cc -Wall -Wextra -Werror -o tests tests.c -lcriterion
+RUN gcc -o tests tests.c ./lib/libft.a -lcriterion
 
 CMD ["./tests"]
