@@ -26,9 +26,72 @@ Test(memset, int_array_basic){
 
         ft_memset(ft_test, 1802, 2);
         memset(origin, 1802, 2);
-
 	cr_assert(array_are_equal(ft_test, origin, 7));
 }
+
+Test(bzero, char_array_basic){
+	char ft_test[] = "asd\nawkdjf";
+	char test[] = "asd\nawkdjf";
+
+	ft_bzero(ft_test, 4);
+	bzero(test, 4);
+	cr_assert_str_eq(ft_test, test, "returned: %s, but got %s", ft_test, test);
+}
+
+Test(memcpy, memcpy_char_array_basic){
+        char ft_test_dest[] = "asdawkdjf";
+        char ft_test_src[] = "bbbbbbbbbbbbf";
+	
+	char test_dest[] = "asdawkdjf";
+        char test_src[] = "bbbbbbbbbbbbf";
+        
+	ft_memcpy(ft_test_dest, ft_test_src, 4);
+	memcpy(test_dest, test_src, 4);
+        cr_assert_str_eq(ft_test_dest, test_dest, "returned: %s, but got %s", ft_test_dest, test_dest);
+}
+
+int compare(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
+}
+
+Test(memcpy, memcpy_int_array_basic){
+        int ft_test_dest[] = {1, 2, 3 ,4 ,5 ,6 };
+        int ft_test_src[] = {10, 20, 30, 40, 50, 60};
+
+	int test_dest[] = {1, 2, 3 ,4 ,5 ,6 };
+	int test_src[] = {10, 20, 30, 40, 50, 60};
+
+        ft_memcpy(ft_test_dest, ft_test_src, 4);
+	printf("ft_memcpy: ");
+	for (int i = 0; i < 6; i++)
+		printf("%d ", ft_test_dest[i]);
+        
+	memcpy(test_dest, test_src, 4);
+	printf("\nmemcpy: ");
+	for (int i = 0; i < 6; i++)
+		printf("%d ", test_dest[i]);
+	printf("\n");
+	cr_assert_arr_eq_cmp(ft_test_dest, test_dest, 6, compare, "fail");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
