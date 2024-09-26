@@ -62,18 +62,69 @@ Test(memcpy, memcpy_int_array_basic){
 	int test_src[] = {10, 20, 30, 40, 50, 60};
 
         ft_memcpy(ft_test_dest, ft_test_src, 4);
-	printf("ft_memcpy: ");
-	for (int i = 0; i < 6; i++)
-		printf("%d ", ft_test_dest[i]);
-        
 	memcpy(test_dest, test_src, 4);
-	printf("\nmemcpy: ");
-	for (int i = 0; i < 6; i++)
-		printf("%d ", test_dest[i]);
-	printf("\n");
 	cr_assert_arr_eq_cmp(ft_test_dest, test_dest, 6, compare, "fail");
 }
 
+Test(memcpy, memcpy_test_overlay){
+        char ft_test_dest[] = "ddd";
+        char ft_test_src[] = "aaaaa";
+
+        char test_dest[] = "ddd";
+        char test_src[] =    "aaaaa";
+
+        ft_memcpy(ft_test_dest, ft_test_src, 4);
+        memcpy(test_dest, test_src, 4);
+        cr_assert_arr_eq_cmp(ft_test_dest, test_dest, 6, compare, "fail");
+}
+
+Test(memmove, memmove_char_array_basic){
+        char ft_test_dest[] = "aaaaaaa";
+        char ft_test_src[] =  "bbbbbbb";
+
+        char test_dest[] =    "aaaaaaa";
+        char test_src[] =     "bbbbbbb";
+
+        ft_memmove(ft_test_dest, ft_test_src, 4);
+        memmove(test_dest, test_src, 4);
+        cr_assert_str_eq(ft_test_dest, test_dest, "returned: %s, but got %s", ft_test_dest, test_dest);
+}
+
+Test(memmove, memmove_char_array_basic2){
+        char ft_test_dest[] = "asdawkdjf";
+        char ft_test_src[] = "bbbbbbbbbbbbf";
+
+        char test_dest[] = "asdawkdjf";
+        char test_src[] = "bbbbbbbbbbbbf";
+
+        ft_memmove(ft_test_dest, ft_test_src + 4, 4);
+        memmove(test_dest, test_src + 4, 4);
+        cr_assert_str_eq(ft_test_dest, test_dest, "returned: %s, but got %s", ft_test_dest, test_dest);
+}
+
+Test(memmove, memmove_char_array_basic3){
+        char ft_test_dest[] = "asdawkdjf";
+        char ft_test_src[] = "bbbbbbbbbbbbf";
+
+        char test_dest[] = "asdawkdjf";
+        char test_src[] = "bbbbbbbbbbbbf";
+
+        ft_memmove(ft_test_dest + 4, ft_test_src, 4);
+        memmove(test_dest + 4, test_src, 4);
+        cr_assert_str_eq(ft_test_dest, test_dest, "returned: %s, but got %s", ft_test_dest, test_dest);
+}
+
+Test(memmove, memmove_test_overlay){
+        char ft_test_dest[] = "ddddddd";
+        char ft_test_src[] = "sss";
+
+        char test_dest[] =    "ddddddd";
+        char test_src[] =    "sss";
+
+        ft_memmove(ft_test_dest, ft_test_src, 4);
+        memmove(test_dest, test_src, 4);
+        cr_assert_str_eq(ft_test_dest, test_dest, "returned: %s, but got %s", ft_test_dest, test_dest);
+}
 
 
 
