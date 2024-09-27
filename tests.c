@@ -114,7 +114,7 @@ Test(memmove, memmove_char_array_basic3){
         cr_assert_str_eq(ft_test_dest, test_dest, "returned: %s, but got %s", ft_test_dest, test_dest);
 }
 
-Test(memmove, memmove_test_overlay){
+Test(memmove, memmove_test_overlay0){
         char ft_test_dest[] = "ddddddd";
         char ft_test_src[] = "sss";
 
@@ -126,6 +126,16 @@ Test(memmove, memmove_test_overlay){
         cr_assert_str_eq(ft_test_dest, test_dest, "returned: %s, but got %s", ft_test_dest, test_dest);
 }
 
+Test(memmove, memmove_test_overlay1){
+	char test_dest4[] =    "Hello, World!";
+        char ft_test_dest[] = "Hello, World!";
+
+        ft_test_dest[0] = 'H';
+        ft_memmove(test_dest4       + 7, test_dest4   , 7);
+
+        cr_assert_str_eq(ft_test_dest, "Hello, Hello, ",
+		"returned: %s, but got %s", ft_test_dest, "Hello, Hello, ");
+}
 
 
 
